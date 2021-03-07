@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "48448757576",
+    "project_id": "yaourtsong-66a0a",
+    "storage_bucket": "yaourtsong-66a0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48448757576:android:071820d3f97a0de4fc5d7d",
+        "android_client_info": {
+          "package_name": "com.example.yaourtsong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48448757576-0a1vthcpe9190bhrblsdegf3h6t3msig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzE7vbw7BzEpFAK7njBXJ0oWCAb3GC-5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48448757576-0a1vthcpe9190bhrblsdegf3h6t3msig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
