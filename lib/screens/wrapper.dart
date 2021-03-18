@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:yaourtsong/screens/authenticate/authenticate.dart';
-import 'package:yaourtsong/screens/firstconnect/configstartup.dart';
 import 'package:yaourtsong/screens/home/home.dart';
 import 'package:provider/provider.dart';
 
