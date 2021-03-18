@@ -3,7 +3,7 @@ import 'package:yaourtsong/services/authservice.dart';
 
 class Register extends StatefulWidget {
   final Function toggleview;
-  Register({@required this.toggleview});
+  Register({required this.toggleview});
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -45,8 +45,7 @@ class _RegisterState extends State<Register> {
                   onChanged: (val) {},
                 ),
                 SizedBox(height: 20.0),
-                RaisedButton(
-                    color: Colors.blue[400],
+                ElevatedButton(
                     child: Text(
                       "S'inscrire",
                       style: TextStyle(color: Colors.white),
@@ -56,8 +55,7 @@ class _RegisterState extends State<Register> {
                       await _auth.registerwithemail(
                           _emailController.text, _passwordController.text);
                     }),
-                RaisedButton(
-                    color: Colors.grey[400],
+                ElevatedButton(
                     child: Text(
                       "deja un compte ?",
                       style: TextStyle(color: Colors.white, fontSize: 12.0),

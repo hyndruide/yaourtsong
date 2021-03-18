@@ -8,12 +8,17 @@ import 'package:yaourtsong/services/dataservice.dart';
 import 'package:yaourtsong/services/storageservice.dart';
 import '../../services/authservice.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
   TextEditingController _pseudocontroller = TextEditingController();
   TextEditingController _agecontroller = TextEditingController();
   StorageService _stserv = StorageService();
-  File _image;
+  late File _image;
 
   final picker = ImagePicker();
 
@@ -57,9 +62,9 @@ class Home extends StatelessWidget {
                               height: 100,
                               width: 100,
                               child: CircleAvatar(
-                                backgroundImage: userData.avatar == null
+                                backgroundImage: (userData.avatar == null
                                     ? AssetImage("assets/images/Doe.png")
-                                    : NetworkImage(userData.avatar),
+                                    : NetworkImage(userData.avatar)) as ImageProvider<Object>?,
                               ),
                             ),
                             Positioned(
@@ -81,7 +86,7 @@ class Home extends StatelessWidget {
                                 width: 45,
                                 child: Center(
                                     child: PopupMenuButton(
-                                        onSelected: (value) {
+                                        onSelected: (dynamic value) {
                                           getImage(userData, value);
                                         },
                                         icon: Icon(
@@ -117,8 +122,7 @@ class Home extends StatelessWidget {
                           ..text = (userData.age).toString() ?? '12',
                       ),
                       SizedBox(height: 20.0),
-                      RaisedButton(
-                          color: Colors.blue[400],
+                      ElevatedButton(
                           child: Text(
                             "A la wannégene !",
                             style:

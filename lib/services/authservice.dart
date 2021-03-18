@@ -5,18 +5,18 @@ import 'package:yaourtsong/services/dataservice.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Stream<User> get user => _auth.authStateChanges();
+  Stream<User?> get user => _auth.authStateChanges();
 
   // GET UID
   Future<String> getCurrentUID() async {
-    return _auth.currentUser.uid;
+    return _auth.currentUser!.uid;
   }
 
   Future signwithemail(email, password) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      UserData user = UserData(uid: userCredential.user.uid);
+      UserData user = UserData(uid: userCredential.user!.uid);
 
       return user;
     } on FirebaseAuthException catch (e) {
@@ -32,7 +32,7 @@ class AuthService {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      UserData user = UserData(uid: userCredential.user.uid);
+      UserData user = UserData(uid: userCredential.user!.uid);
       await DataService(uid: user.uid).updateUser(user);
       return user;
     } on FirebaseAuthException catch (e) {

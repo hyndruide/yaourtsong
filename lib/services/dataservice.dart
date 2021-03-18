@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/userdata.dart';
 
 class DataService {
-  final String uid;
+  final String? uid;
   DataService({this.uid});
 
   final CollectionReference users =
@@ -20,9 +20,9 @@ class DataService {
   UserData _userdatafromsnapshot(DocumentSnapshot snapshot) {
     return UserData(
         uid: uid,
-        pseudo: snapshot.data()['pseudo'],
-        age: snapshot.data()['age'],
-        avatar: snapshot.data()['avatar']);
+        pseudo: snapshot.data()!['pseudo'],
+        age: snapshot.data()!['age'],
+        avatar: snapshot.data()!['avatar']);
   }
 
   Stream<UserData> get userData {

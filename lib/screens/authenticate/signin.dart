@@ -3,7 +3,7 @@ import 'package:yaourtsong/services/authservice.dart';
 
 class Signin extends StatefulWidget {
   final Function toggleview;
-  Signin({@required this.toggleview});
+  Signin({required this.toggleview});
   @override
   _SigninState createState() => _SigninState();
 }
@@ -57,8 +57,7 @@ class _SigninState extends State<Signin> {
                   onChanged: (val) {},
                 ),
                 SizedBox(height: 20.0),
-                RaisedButton(
-                    color: Colors.blue[400],
+                ElevatedButton(
                     child: Text(
                       'Connection',
                       style: TextStyle(color: Colors.white),
@@ -68,8 +67,7 @@ class _SigninState extends State<Signin> {
                       await _auth.signwithemail(
                           _emailController.text, _passwordController.text);
                     }),
-                RaisedButton(
-                    color: Colors.grey[400],
+                ElevatedButton(
                     child: Text(
                       "S'inscrire",
                       style: TextStyle(color: Colors.white, fontSize: 12.0),

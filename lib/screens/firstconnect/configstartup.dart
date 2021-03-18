@@ -16,15 +16,9 @@ class _ConfigStartupState extends State<ConfigStartup> {
   TextEditingController _pseudocontroller = TextEditingController();
   TextEditingController _agecontroller = TextEditingController();
   StorageService _stserv = StorageService();
-  File _image;
+  late File _image;
 
   final picker = ImagePicker();
-  @override
-  void initState() {
-    // TODO: implement initState
-
-    super.initState();
-  }
 
   Future getImage(userData, source) async {
     final pickedFile = await picker.getImage(source: source);
@@ -64,9 +58,9 @@ class _ConfigStartupState extends State<ConfigStartup> {
                             height: 100,
                             width: 100,
                             child: CircleAvatar(
-                              backgroundImage: userData.avatar == null
+                              backgroundImage: (userData.avatar == null
                                   ? AssetImage("assets/images/Doe.png")
-                                  : NetworkImage(userData.avatar),
+                                  : NetworkImage(userData.avatar)) as ImageProvider<Object>?,
                             ),
                           ),
                           Positioned(
@@ -88,7 +82,7 @@ class _ConfigStartupState extends State<ConfigStartup> {
                               width: 45,
                               child: Center(
                                   child: PopupMenuButton(
-                                      onSelected: (value) {
+                                      onSelected: (dynamic value) {
                                         getImage(userData, value);
                                       },
                                       icon: Icon(
@@ -124,8 +118,7 @@ class _ConfigStartupState extends State<ConfigStartup> {
                         ..text = (userData.age).toString() ?? '12',
                     ),
                     SizedBox(height: 20.0),
-                    RaisedButton(
-                        color: Colors.blue[400],
+                    ElevatedButton(
                         child: Text(
                           "A la wannégene !",
                           style: TextStyle(color: Colors.white, fontSize: 14.0),
