@@ -19,7 +19,7 @@ class DataService {
 
   UserData _userdatafromsnapshot(DocumentSnapshot snapshot) {
     return UserData(
-        uid: uid,
+        uid: uid!,
         pseudo: snapshot.data()!['pseudo'],
         age: snapshot.data()!['age'],
         avatar: snapshot.data()!['avatar']);

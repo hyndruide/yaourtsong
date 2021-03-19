@@ -14,7 +14,7 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
-    var user = Provider.of<User>(context);
+    var user = Provider.of<User?>(context);
     bool isConnected = user != null;
     return isConnected ? Home() : Authenticate();
   }

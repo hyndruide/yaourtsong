@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:yaourtsong/services/dataservice.dart';
 import 'package:yaourtsong/services/storageservice.dart';
+import '../../models/userdata.dart';
 import '../../services/authservice.dart';
 
 class Home extends StatefulWidget {
@@ -34,13 +35,13 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
-    return StreamBuilder(
-        stream: DataService(uid: user.uid).userData,
+    final user = Provider.of<User?>(context);
+    return StreamBuilder<UserData>(
+        stream: DataService(uid: user!.uid).userData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final userData = snapshot.data;
-            if (userData.pseudo == null) {
+            if (userData!.pseudo == "newyahourtsinger") {
               return Scaffold(
                 body: Container(
                   padding:
@@ -63,8 +64,9 @@ class _HomeState extends State<Home> {
                               width: 100,
                               child: CircleAvatar(
                                 backgroundImage: (userData.avatar == null
-                                    ? AssetImage("assets/images/Doe.png")
-                                    : NetworkImage(userData.avatar)) as ImageProvider<Object>?,
+                                        ? AssetImage("assets/images/Doe.png")
+                                        : NetworkImage(userData.avatar!))
+                                    as ImageProvider<Object>?,
                               ),
                             ),
                             Positioned(
@@ -113,13 +115,13 @@ class _HomeState extends State<Home> {
                       SizedBox(height: 40.0),
                       Text("choisissez un pseudo"),
                       TextFormField(
-                        controller: _pseudocontroller..text = userData.pseudo,
+                        controller: _pseudocontroller..text = userData.pseudo!,
                       ),
                       SizedBox(height: 20.0),
                       Text("quel age avez vous ?"),
                       TextFormField(
                         controller: _agecontroller
-                          ..text = (userData.age).toString() ?? '12',
+                          ..text = (userData.age).toString(),
                       ),
                       SizedBox(height: 20.0),
                       ElevatedButton(
@@ -139,7 +141,7 @@ class _HomeState extends State<Home> {
               );
             } else {
               return Scaffold(
-                  appBar: AppBar(title: Text(userData.pseudo), actions: [
+                  appBar: AppBar(title: Text(userData.pseudo!), actions: [
                 IconButton(
                   icon: const Icon(Icons.logout),
                   tooltip: 'Show Snackbar',

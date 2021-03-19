@@ -35,7 +35,7 @@ class _ConfigStartupState extends State<ConfigStartup> {
     final user = Provider.of<User>(context);
     return StreamBuilder(
         stream: DataService(uid: user.uid).userData,
-        builder: (context, snapshot) {
+        builder: (context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
             final userData = snapshot.data;
             return Scaffold(
@@ -58,9 +58,10 @@ class _ConfigStartupState extends State<ConfigStartup> {
                             height: 100,
                             width: 100,
                             child: CircleAvatar(
-                              backgroundImage: (userData.avatar == null
-                                  ? AssetImage("assets/images/Doe.png")
-                                  : NetworkImage(userData.avatar)) as ImageProvider<Object>?,
+                              backgroundImage: (userData!.avatar == null
+                                      ? AssetImage("assets/images/Doe.png")
+                                      : NetworkImage(userData.avatar))
+                                  as ImageProvider<Object>?,
                             ),
                           ),
                           Positioned(
@@ -115,7 +116,7 @@ class _ConfigStartupState extends State<ConfigStartup> {
                     Text("quel age avez vous ?"),
                     TextFormField(
                       controller: _agecontroller
-                        ..text = (userData.age).toString() ?? '12',
+                        ..text = (userData.age).toString(),
                     ),
                     SizedBox(height: 20.0),
                     ElevatedButton(
